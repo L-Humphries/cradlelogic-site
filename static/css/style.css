@@ -8,7 +8,7 @@ body {
 .hero {
   position: relative;
   height: 350px;
-  background: url('../img/header_launceston.jpg') center/cover no-repeat;
+  background: url('../img/header_launceston.jpg') center / cover no-repeat;
   color: white;
   display: flex;
   align-items: center;
