@@ -1,42 +1,66 @@
+/*==== navbar ====*/
+html { scroll-behavior: smooth; }
 body {
+  padding-top: 64px; 
   margin: 0;
   font-family: Arial, sans-serif;
-  background: darkslategrey;
+  background: #2f4f4f;
   color: #f5f5f5;
 }
 
+nav.site-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  background: #fffff0;
+  border-bottom: 1px solid #f7e7ce;
+  z-index: 1000;
+}
+
+.nav-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0.75rem 1rem;
+  display: flex;
+  gap: 1.25rem;
+  justify-content: center; 
+  align-items: center;
+}
+
+nav.site-nav a {
+  color: #23434b;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+nav.site-nav a:hover {
+  text-decoration: underline;
+}
+
+/*==== top banner or hero ====*/
 .hero {
   position: relative;
-  height: 350px;
-  background: url('../img/header_launceston.jpg') center / cover no-repeat;
+  height: 450px;
+  background: url('../img/header_launceston.jpg') center/cover no-repeat;
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
+  text-align: end;
 }
 
-.hero h1 {
-  font-size: 3rem;
-  margin: 0;
-}
-
-/* business card - under construction*/
-.card {
-  max-width: 600px;    
-  margin: 2rem auto;       
-  text-align: center;
-  padding: 2rem;
-  border-radius: 1rem;
-  background: white;
-  color: #23434b;
-  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+.hero-logo {
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  height: 85%;
+  width: auto; 
+  z-index: 2;
 }
 
 .hero p {
-  font-size: 1.2rem;
+  font-size: 1rem;
   margin: 0;
-  opacity: 0.9;
+  opacity: 1;
 }
 
 .hero .overlay {
@@ -46,11 +70,153 @@ body {
 }
 
 .hero .content {
-  position: relative;
-  z-index: 1;
+  position: absolute;
+  transform: translateX(-50%);
+  z-index: 3;
+  bottom: 15px;
+  left: 50%;
 }
+
+
+/*==== card shape for contact ====*/
+.card {
+  width: min(90%, 700px);
+  margin: 2rem auto;
+  padding: 2rem clamp(1rem, 3vw, 2.5rem);
+  border-radius: 1rem;
+  background: #fff;
+  color: #23434b;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  box-sizing: border-box;
+}
+
+/* card * = valid in all .card classes */
+.card * {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* scaling for narrow screens*/
+@media (max-width: 768px) {
+  .card.left,
+  .card.right {
+    margin: 1.5rem auto;
+    text-align: left; 
+  }
+}
+
+/* text colour: Emerald Forest */
+/* Yoghurt Brûlée */
+.bg-100 { 
+  background: #f7e7ce; 
+  color: #23434b; 
+
+  /* Espresso */
+} 
+.bg-400 { 
+  background: #4f2f2f; 
+  color: #23434b; 
+}
+
+/* Dark Slate Gray */
+.bg-200 {
+  background: #2f4f4f; 
+  color: #23434b; 
+}
+
+/* Ivory */
+.bg-300 {
+  background: #fffff0; 
+  color: #23434b; 
+}
+
+.section {
+  padding-block: clamp(2rem, 6vw, 4rem);
+  scroll-margin-top: 72px;
+}
+
+
+/* optional: stack on narrow screens */
+@media (max-width: 800px) {
+  .flex-container > div {
+    flex: 1 1 100%;
+  }
+}
+
+
+/*==== Images ====*/
+
+/* Image 1 landscape */
+.img1 {
+  flex: 1 1 clamp(220px, 34vw, 460px);
+  width: auto;
+  max-width: clamp(220px, 40vw, 460px);
+  height: auto;
+  aspect-ratio: 4 / 3;     /* w/h */
+  height: auto;
+  object-fit: cover;
+  border-radius: 1rem;
+  box-shadow: 0 0 10px rgba(0,0,0,.1);
+}
+
+/* Image 2 portrait crop */
+.img2 {
+  flex: 1 1 clamp(220px, 34vw, 460px);
+  width: auto;
+  max-width: clamp(220px, 40vw, 460px);
+  height: auto;
+  aspect-ratio: 3 / 4;     /* w/h */
+  height: auto;
+  object-fit: cover;
+  border-radius: 1rem;
+  box-shadow: 0 0 10px rgba(0,0,0,.1);
+
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Image 3 square crop */
+.img3 {
+  flex: 1 1 clamp(220px, 34vw, 460px);
+  width: auto;
+  max-width: clamp(220px, 40vw, 460px);
+  height: auto;
+  aspect-ratio: 1 / 1;     /* w/h */
+  height: auto;
+  object-fit: cover;
+  border-radius: 1rem; 
+  box-shadow: 0 0 10px rgba(0,0,0,.1);
+
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* also used in contact form */
+.stack > * + * { margin-top: 1rem; }
+
+
+/*==== contact form ====*/
+
+#contactForm label { display:block; font-weight:600; margin:0 0 .25rem; }
+#contactForm input, #contactForm textarea { display:block; width:100%; }
+
+/* spacing & sizing */
+#contactForm input, #contactForm textarea, #contactForm button {
+  padding:.65rem .8rem; 
+  border:1px solid #cfd6d3; 
+  border-radius:.6rem; 
+  font:inherit;
+}
+#contactForm textarea { min-height:9rem; resize:vertical; }
+#contactForm .status { margin-top:.75rem; text-align:center; color:#7a1a1a; }
+
+
+/*==== Footer ====*/
 footer {
-  position: fixed;      
+  position: static;      
   bottom: 0;             
   right: 0;              
   text-align: right;
@@ -70,4 +236,85 @@ a {
 
 a:hover {
   text-decoration: underline;
+}
+
+/* ==== TEST ==== */
+* {
+  box-sizing: border-box;
+}
+
+.test-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;  
+  justify-content: center;
+  flex-wrap: wrap;
+  background-color: #f7e7ce;
+  text-align: justify;
+  text-justify: inter-word;
+  padding: 10px;
+
+  gap: 0; 
+  max-width: 1400px;   
+  margin-inline: auto;
+}
+
+.test-container > div {
+  flex: 1 1 50%; 
+  padding: 10px;
+  background-color: #f7e7ce;
+  color: #23434b;
+  line-height: 1.4; 
+  height: auto;  
+}
+
+.test-item-left, .test-item-right {
+  background-color: #4f2f2f;
+  color: #FFF;
+  flex: 1 1 50%;
+  padding: 6rem clamp(3rem, 6vw, 8rem);
+  box-sizing: border-box;
+}
+
+.test-flash-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  
+  text-align: justify;
+  text-justify: inter-word;
+  padding: 10px;
+  gap: 2rem;
+  max-width: 1400px; 
+  margin-inline: auto;
+}
+.test-card {
+  flex: 1 1 30%;
+  
+  margin: 2rem auto;
+  padding: 2rem clamp(1rem, 3vw, 2.5rem);
+  border-radius: 1rem;
+  background: #fff;
+  color: #23434b;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  box-sizing: border-box;
+}
+
+.test-icon {
+  max-width: 60px;
+  max-height: 60px;
+}
+
+
+/* Responsive layout - makes a one column layout instead of a two-column layout */
+@media (max-width: 800px) {
+  .test-container {
+    flex-direction: column;
+  }
+  .test-container > div {
+    flex-basis: 100%;
+  }
 }
