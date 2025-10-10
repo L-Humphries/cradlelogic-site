@@ -37,30 +37,36 @@ nav.site-nav a:hover {
 }
 
 /*==== top banner or hero ====*/
+/*==== top banner or hero ====*/
 .hero {
   position: relative;
-  height: 450px;
-  background: url('../img/header_launceston.jpg') center/cover no-repeat;
+  min-height: clamp(320px, 60dvh, 560px);   /* fluid height */
+  background: url('../img/header_launceston.jpg') center / cover no-repeat;
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: end;
+  text-align: right; /* or left/center; avoid 'end' */
+  overflow: hidden;  /* guard against sideways scroll */
 }
 
+/* Logo: size by width, let height follow */
 .hero-logo {
   position: absolute;
   top: 10%;
   left: 5%;
-  height: 85%;
-  width: auto; 
+  width: clamp(140px, 38vw, 420px);  /* scales down on phones */
+  height: auto;
   z-index: 2;
 }
 
-.hero p {
-  font-size: 1rem;
-  margin: 0;
-  opacity: 1;
+/* Content pinned near bottom center */
+.hero .content {
+  position: absolute;
+  left: 50%;
+  bottom: 15px;
+  transform: translateX(-50%);
+  z-index: 3;
 }
 
 .hero .overlay {
@@ -69,13 +75,24 @@ nav.site-nav a:hover {
   background: rgba(0,0,0,0.4);
 }
 
-.hero .content {
-  position: absolute;
-  transform: translateX(-50%);
-  z-index: 3;
-  bottom: 15px;
-  left: 50%;
+.hero p {
+  font-size: 1rem;
+  margin: 0;
+  opacity: 1;
 }
+
+/* Tweak for very small screens */
+@media (max-width: 480px) {
+  .hero-logo {
+    top: 8%;
+    left: 4%;
+    width: clamp(120px, 45vw, 320px);
+  }
+  .hero .content {
+    bottom: 10px;
+  }
+}
+
 
 
 /*==== card shape for contact ====*/
